@@ -1,0 +1,395 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "RENTAL_OPENED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-101",
+    "occurred_at": "2026-10-04T08:30:00+08:00",
+    "version": 1,
+    "summary": "开出租借单",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-002",
+      "party_id": "pty-101",
+      "renter_member_id": "m-101",
+      "site_id": "site-lakeside",
+      "planned_return_at": "2026-10-04T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-101",
+    "occurred_at": "2026-10-04T08:31:00+08:00",
+    "version": 1,
+    "summary": "成员 m-101 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-101",
+      "member_category": "adult",
+      "display_alias": "游客01"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-101",
+    "occurred_at": "2026-10-04T08:33:00+08:00",
+    "version": 2,
+    "summary": "m-101 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-101",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-101",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-101",
+    "occurred_at": "2026-10-04T08:33:01+08:00",
+    "version": 3,
+    "summary": "m-101 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-101",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-101",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "DEVICE_HANDED_OUT",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T08:35:00+08:00",
+    "version": 1,
+    "summary": "伴游设备发放",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-101",
+      "party_id": "pty-101",
+      "handover_staff_id": "s-01",
+      "site_id": "site-lakeside"
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "MEDIA_CAPTURED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-201",
+    "occurred_at": "2026-10-04T10:20:00+08:00",
+    "version": 1,
+    "summary": "事故路段影像",
+    "source": "device",
+    "payload": {
+      "media_id": "med-201",
+      "rental_id": "ren-101",
+      "party_id": "pty-101",
+      "area_ref": "A-12",
+      "media_kind": "video"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "MEDIA_CLASSIFIED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-201",
+    "occurred_at": "2026-10-04T10:20:10+08:00",
+    "version": 2,
+    "summary": "普通游记素材（事故后转为证据保全）",
+    "source": "platform",
+    "payload": {
+      "media_id": "med-201",
+      "subject_class": "ordinary",
+      "treatment": "retain",
+      "classified_by": "device-auto"
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "DEVICE_ALERT_RAISED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T14:00:00+08:00",
+    "version": 3,
+    "summary": "跌倒告警（断网缓冲）",
+    "source": "device",
+    "payload": {
+      "alert_code": "fall_detected",
+      "severity": "critical",
+      "area_ref": "A-12",
+      "detail": "疑似跌倒，等待人工确认"
+    },
+    "received_at": "2026-10-04T17:40:00+08:00",
+    "buffered": true,
+    "device_sequence": 7
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "DEVICE_STATUS_REPORTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T14:05:00+08:00",
+    "version": 4,
+    "summary": "设备状态（断网缓冲）",
+    "source": "device",
+    "payload": {
+      "status_code": "assist_needed",
+      "battery_pct": 63,
+      "detail": "游客已起身，现场人员前往"
+    },
+    "received_at": "2026-10-04T17:40:00+08:00",
+    "buffered": true,
+    "device_sequence": 8
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "MANUAL_REROUTE_LOGGED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T14:10:00+08:00",
+    "version": 5,
+    "summary": "现场人工改道至救护点",
+    "source": "staff",
+    "payload": {
+      "staff_id": "s-09",
+      "from_route_version": 2,
+      "to_route_version": 3,
+      "constraint_id": "con-301",
+      "reason": "护送受伤游客走无障碍通道",
+      "area_ref": "A-12"
+    },
+    "received_at": "2026-10-04T17:40:00+08:00",
+    "buffered": true,
+    "device_sequence": 9
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "DEVICE_STATUS_REPORTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T14:15:00+08:00",
+    "version": 6,
+    "summary": "设备状态（断网缓冲）",
+    "source": "device",
+    "payload": {
+      "status_code": "enroute_first_aid",
+      "battery_pct": 58
+    },
+    "received_at": "2026-10-04T17:40:00+08:00",
+    "buffered": true,
+    "device_sequence": 10
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "RENTAL_CLOSED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-101",
+    "occurred_at": "2026-10-04T17:30:00+08:00",
+    "version": 2,
+    "summary": "事故租约关闭",
+    "source": "platform",
+    "payload": {
+      "rental_id": "ren-101",
+      "result": "terminated_incident",
+      "closed_by_staff_id": "s-09"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "RETURN_INSPECTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T17:35:00+08:00",
+    "version": 2,
+    "summary": "归还检验通过",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-101",
+      "inspecting_staff_id": "s-01",
+      "result": "passed",
+      "findings": "外观完好"
+    }
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "EVIDENCE_HELD",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "hold-inc-501",
+    "occurred_at": "2026-10-04T17:45:00+08:00",
+    "version": 1,
+    "summary": "事故证据依法保全",
+    "source": "authority",
+    "payload": {
+      "hold_id": "hold-inc-501",
+      "incident_id": "inc-501",
+      "legal_basis": "生产安全事故配合调查",
+      "authorized_by": "l-01",
+      "media_ids": [
+        "med-201"
+      ],
+      "hold_until": "2026-10-04T23:59:59+08:00",
+      "note": "仅限事故调查成员访问"
+    }
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "INCIDENT_REVIEW_OPENED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T17:50:00+08:00",
+    "version": 8,
+    "summary": "安全负责人开启复盘（仅取本事故证据与设备日志引用）",
+    "source": "staff",
+    "payload": {
+      "incident_id": "inc-501",
+      "rental_id": "ren-101",
+      "safety_lead_id": "l-01",
+      "media_ids": [
+        "med-201"
+      ],
+      "device_log_refs": [
+        "dev-002#seq7",
+        "dev-002#seq8",
+        "dev-002#seq9",
+        "dev-002#seq10"
+      ],
+      "note": "不调取该游客其他行程素材"
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "OFFLINE_EVENTS_RESYNCED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T17:40:30+08:00",
+    "version": 7,
+    "summary": "离线缓冲 4 条事件补齐，序列 7-10 连续",
+    "source": "device",
+    "payload": {
+      "device_sequence_from": 7,
+      "device_sequence_to": 10,
+      "event_count": 4,
+      "resynced_by_staff_id": "s-09"
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "DEVICE_CLEAR_FAILED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T18:00:00+08:00",
+    "version": 9,
+    "summary": "清除验证失败：设备仍有残留媒体",
+    "source": "device",
+    "payload": {
+      "rental_id": "ren-101",
+      "attempt_ref": "wipe-att-1",
+      "reason": "residual_media",
+      "detail": "缓存分区残留 med-201 设备端副本",
+      "staff_id": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "DEVICE_QUARANTINED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T18:05:00+08:00",
+    "version": 10,
+    "summary": "设备隔离：残留媒体，禁止再出租",
+    "source": "staff",
+    "payload": {
+      "reason": "residual_media",
+      "rental_id": "ren-101",
+      "detail": "现场看板展示隔离原因与处理指引"
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "DEVICE_CLEARED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T18:20:00+08:00",
+    "version": 11,
+    "summary": "二次清除成功并验证",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-101",
+      "wipe_method": "cryptographic_erase",
+      "verified_by": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "DEVICE_RELEASED_FOR_RENTAL",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T18:25:00+08:00",
+    "version": 12,
+    "summary": "重新清除成功，隔离解除放行",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-101",
+      "released_by_staff_id": "s-02",
+      "note": "事故复盘依据证据库副本继续，不占用设备"
+    }
+  },
+  {
+    "event_id": "evt-021",
+    "event_type": "INCIDENT_REVIEW_CLOSED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-002",
+    "occurred_at": "2026-10-04T19:00:00+08:00",
+    "version": 13,
+    "summary": "复盘结束：设备助力延迟，转交维保",
+    "source": "staff",
+    "payload": {
+      "incident_id": "inc-501",
+      "outcome": "fault_confirmed",
+      "safety_lead_id": "l-01",
+      "note": "形成整改单，未接触无关行程"
+    }
+  },
+  {
+    "event_id": "evt-022",
+    "event_type": "EVIDENCE_RELEASED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "hold-inc-501",
+    "occurred_at": "2026-10-04T19:05:00+08:00",
+    "version": 2,
+    "summary": "保全范围到期解除",
+    "source": "authority",
+    "payload": {
+      "hold_id": "hold-inc-501",
+      "released_by": "l-01",
+      "reason": "调查结束，保全期限届满"
+    }
+  },
+  {
+    "event_id": "evt-023",
+    "event_type": "MEDIA_DELETED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-201",
+    "occurred_at": "2026-10-04T19:10:00+08:00",
+    "version": 3,
+    "summary": "保全解除后按留存策略删除",
+    "source": "platform",
+    "payload": {
+      "media_id": "med-201",
+      "wipe_method": "secure_erase",
+      "verified_by": "l-01"
+    }
+  }
+]

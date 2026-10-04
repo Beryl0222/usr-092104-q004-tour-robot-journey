@@ -1,9 +1,16 @@
 {
-  "event_id": "sample-004",
+  "event_id": "evt-012",
   "event_type": "DEVICE_HANDED_OUT",
   "aggregate_type": "tour_device",
-  "aggregate_id": "aggregate-004",
-  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "aggregate_id": "dev-001",
+  "occurred_at": "2026-10-04T08:35:00+08:00",
   "version": 1,
-  "summary": "伴游设备旅程托管领域样例"
+  "summary": "伴游设备发放",
+  "source": "staff",
+  "payload": {
+    "rental_id": "ren-001",
+    "party_id": "pty-001",
+    "handover_staff_id": "s-01",
+    "site_id": "site-lakeside"
+  }
 }

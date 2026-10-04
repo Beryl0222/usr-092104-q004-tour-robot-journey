@@ -19,20 +19,49 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "RENTAL_OPENED",
         "DEVICE_HANDED_OUT",
+        "RENTAL_CLOSED",
+        "PARTY_MEMBER_JOINED",
+        "PARTY_MEMBER_LEFT",
+        "GUARDIANSHIP_DECLARED",
         "CONSENT_RECORDED",
+        "CONSENT_UPDATED",
+        "ROUTE_CONSTRAINT_PUBLISHED",
         "ROUTE_REVISED",
-        "ASSISTANCE_ESCALATED",
-        "DEVICE_CLEARED"
+        "ROUTE_CACHE_INVALIDATED",
+        "DEVICE_ALERT_RAISED",
+        "MANUAL_REROUTE_LOGGED",
+        "DEVICE_STATUS_REPORTED",
+        "OFFLINE_EVENTS_RESYNCED",
+        "MEDIA_CAPTURED",
+        "MEDIA_CLASSIFIED",
+        "MEDIA_EXPORTED",
+        "MEDIA_DELETION_REQUESTED",
+        "MEDIA_DELETED",
+        "EVIDENCE_HELD",
+        "EVIDENCE_RELEASED",
+        "RETURN_INSPECTED",
+        "DEVICE_CLEARED",
+        "DEVICE_CLEAR_FAILED",
+        "DEVICE_QUARANTINED",
+        "DEVICE_RELEASED_FOR_RENTAL",
+        "INCIDENT_REVIEW_OPENED",
+        "INCIDENT_REVIEW_CLOSED",
+        "ASSISTANCE_FIT_CHECKED",
+        "ASSISTANCE_DEVICE_ATTACHED",
+        "ASSISTANCE_ESCALATED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "tour_device",
+        "rental_order",
         "journey_party",
         "route_advisory",
-        "media_retention"
+        "media_retention",
+        "assistance_device"
       ]
     },
     "aggregate_id": {
@@ -43,6 +72,10 @@
       "type": "string",
       "format": "date-time"
     },
+    "received_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "version": {
       "type": "integer",
       "minimum": 1
@@ -50,7 +83,1068 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "source": {
+      "type": "string"
+    },
+    "buffered": {
+      "type": "boolean"
+    },
+    "device_sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "causation_id": {
+      "type": "string"
+    },
+    "site_id": {
+      "type": "string"
+    },
+    "payload": {
+      "$ref": "#/$defs/payloads_by_event"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "payloads_by_event": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "RENTAL_OPENED": {
+      "type": "object",
+      "required": [
+        "device_id",
+        "party_id",
+        "renter_member_id",
+        "site_id",
+        "planned_return_at"
+      ],
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "renter_member_id": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "planned_return_at": {
+          "type": "string"
+        },
+        "accessibility_needs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_HANDED_OUT": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "party_id",
+        "handover_staff_id"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "handover_staff_id": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "assistance_device_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "RENTAL_CLOSED": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "result"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "terminated_incident",
+            "terminated_other"
+          ]
+        },
+        "closed_by_staff_id": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "PARTY_MEMBER_JOINED": {
+      "type": "object",
+      "required": [
+        "member_id",
+        "member_category"
+      ],
+      "properties": {
+        "member_id": {
+          "type": "string"
+        },
+        "member_category": {
+          "type": "string",
+          "enum": [
+            "adult",
+            "child"
+          ]
+        },
+        "display_alias": {
+          "type": "string"
+        },
+        "age_band": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "PARTY_MEMBER_LEFT": {
+      "type": "object",
+      "required": [
+        "member_id"
+      ],
+      "properties": {
+        "member_id": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "GUARDIANSHIP_DECLARED": {
+      "type": "object",
+      "required": [
+        "guardian_member_id",
+        "ward_member_id",
+        "relation"
+      ],
+      "properties": {
+        "guardian_member_id": {
+          "type": "string"
+        },
+        "ward_member_id": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "verified_by_staff_id": {
+          "type": "string"
+        },
+        "verification_ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "CONSENT_RECORDED": {
+      "type": "object",
+      "required": [
+        "member_id",
+        "scope",
+        "decision",
+        "basis",
+        "actor_member_id"
+      ],
+      "properties": {
+        "member_id": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "recording",
+            "positioning"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "granted",
+            "denied"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "self",
+            "guardian"
+          ]
+        },
+        "actor_member_id": {
+          "type": "string"
+        },
+        "guardian_member_id": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "CONSENT_UPDATED": {
+      "type": "object",
+      "required": [
+        "member_id",
+        "scope",
+        "decision",
+        "basis",
+        "actor_member_id"
+      ],
+      "properties": {
+        "member_id": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "recording",
+            "positioning"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "granted",
+            "denied"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "self",
+            "guardian"
+          ]
+        },
+        "actor_member_id": {
+          "type": "string"
+        },
+        "guardian_member_id": {
+          "type": "string"
+        },
+        "previous_decision": {
+          "type": "string",
+          "enum": [
+            "granted",
+            "denied"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ROUTE_CONSTRAINT_PUBLISHED": {
+      "type": "object",
+      "required": [
+        "constraint_id",
+        "kind",
+        "severity",
+        "area_ref",
+        "effective_from"
+      ],
+      "properties": {
+        "constraint_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "construction",
+            "temporary_control",
+            "accessibility_restriction",
+            "closure"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "hard",
+            "soft"
+          ]
+        },
+        "area_ref": {
+          "type": "string"
+        },
+        "effective_from": {
+          "type": "string"
+        },
+        "effective_to": {
+          "type": "string"
+        },
+        "issued_by": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ROUTE_REVISED": {
+      "type": "object",
+      "required": [
+        "device_id",
+        "route_version",
+        "area_ref"
+      ],
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "route_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "area_ref": {
+          "type": "string"
+        },
+        "considered_constraint_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "preference_applied": {
+          "type": "string"
+        },
+        "change_reason": {
+          "type": "string"
+        },
+        "supersede_route_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "ROUTE_CACHE_INVALIDATED": {
+      "type": "object",
+      "required": [
+        "scope",
+        "reason"
+      ],
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": [
+            "device",
+            "party",
+            "all_devices"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "device_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "constraint_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_ALERT_RAISED": {
+      "type": "object",
+      "required": [
+        "alert_code",
+        "severity"
+      ],
+      "properties": {
+        "alert_code": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ]
+        },
+        "area_ref": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "MANUAL_REROUTE_LOGGED": {
+      "type": "object",
+      "required": [
+        "staff_id",
+        "from_route_version",
+        "to_route_version"
+      ],
+      "properties": {
+        "staff_id": {
+          "type": "string"
+        },
+        "from_route_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "to_route_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "constraint_id": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "area_ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_STATUS_REPORTED": {
+      "type": "object",
+      "required": [
+        "status_code"
+      ],
+      "properties": {
+        "status_code": {
+          "type": "string"
+        },
+        "battery_pct": {
+          "type": "integer"
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "OFFLINE_EVENTS_RESYNCED": {
+      "type": "object",
+      "required": [
+        "device_sequence_from",
+        "device_sequence_to",
+        "event_count"
+      ],
+      "properties": {
+        "device_sequence_from": {
+          "type": "integer"
+        },
+        "device_sequence_to": {
+          "type": "integer"
+        },
+        "event_count": {
+          "type": "integer"
+        },
+        "resynced_by_staff_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "MEDIA_CAPTURED": {
+      "type": "object",
+      "required": [
+        "media_id",
+        "rental_id",
+        "party_id"
+      ],
+      "properties": {
+        "media_id": {
+          "type": "string"
+        },
+        "rental_id": {
+          "type": "string"
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "area_ref": {
+          "type": "string"
+        },
+        "media_kind": {
+          "type": "string",
+          "enum": [
+            "photo",
+            "video",
+            "audio",
+            "track_log"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "MEDIA_CLASSIFIED": {
+      "type": "object",
+      "required": [
+        "media_id",
+        "subject_class",
+        "treatment"
+      ],
+      "properties": {
+        "media_id": {
+          "type": "string"
+        },
+        "subject_class": {
+          "type": "string",
+          "enum": [
+            "ordinary",
+            "child",
+            "incidental_passerby",
+            "consent_denied_person"
+          ]
+        },
+        "treatment": {
+          "type": "string",
+          "enum": [
+            "retain",
+            "anonymize",
+            "exclude_capture",
+            "purge"
+          ]
+        },
+        "classified_by": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "MEDIA_EXPORTED": {
+      "type": "object",
+      "required": [
+        "media_id",
+        "requested_by_member_id",
+        "purpose"
+      ],
+      "properties": {
+        "media_id": {
+          "type": "string"
+        },
+        "requested_by_member_id": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "export_ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "MEDIA_DELETION_REQUESTED": {
+      "type": "object",
+      "required": [
+        "media_id",
+        "requested_by",
+        "reason"
+      ],
+      "properties": {
+        "media_id": {
+          "type": "string"
+        },
+        "requested_by": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "visitor_request",
+            "retention_policy",
+            "consent_denied",
+            "incidental_cleanup"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "MEDIA_DELETED": {
+      "type": "object",
+      "required": [
+        "media_id",
+        "wipe_method",
+        "verified_by"
+      ],
+      "properties": {
+        "media_id": {
+          "type": "string"
+        },
+        "wipe_method": {
+          "type": "string",
+          "enum": [
+            "secure_erase",
+            "cryptographic_erase"
+          ]
+        },
+        "verified_by": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "EVIDENCE_HELD": {
+      "type": "object",
+      "required": [
+        "hold_id",
+        "incident_id",
+        "legal_basis",
+        "authorized_by",
+        "media_ids"
+      ],
+      "properties": {
+        "hold_id": {
+          "type": "string"
+        },
+        "incident_id": {
+          "type": "string"
+        },
+        "legal_basis": {
+          "type": "string"
+        },
+        "authorized_by": {
+          "type": "string"
+        },
+        "media_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "hold_until": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "EVIDENCE_RELEASED": {
+      "type": "object",
+      "required": [
+        "hold_id",
+        "released_by"
+      ],
+      "properties": {
+        "hold_id": {
+          "type": "string"
+        },
+        "released_by": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "RETURN_INSPECTED": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "inspecting_staff_id",
+        "result"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "inspecting_staff_id": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "findings": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_CLEARED": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "wipe_method",
+        "verified_by"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "wipe_method": {
+          "type": "string",
+          "enum": [
+            "secure_erase",
+            "cryptographic_erase"
+          ]
+        },
+        "verified_by": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_CLEAR_FAILED": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "attempt_ref",
+        "reason"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "attempt_ref": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "wipe_error",
+            "residual_media",
+            "hardware_fault",
+            "media_locked"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        },
+        "staff_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_QUARANTINED": {
+      "type": "object",
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "wipe_failed",
+            "inspection_failed",
+            "physical_damage",
+            "residual_media",
+            "incident_hold",
+            "overdue_lock"
+          ]
+        },
+        "rental_id": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "related_incident_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "DEVICE_RELEASED_FOR_RENTAL": {
+      "type": "object",
+      "required": [
+        "rental_id",
+        "released_by_staff_id"
+      ],
+      "properties": {
+        "rental_id": {
+          "type": "string"
+        },
+        "released_by_staff_id": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "INCIDENT_REVIEW_OPENED": {
+      "type": "object",
+      "required": [
+        "incident_id",
+        "rental_id",
+        "safety_lead_id",
+        "media_ids",
+        "device_log_refs"
+      ],
+      "properties": {
+        "incident_id": {
+          "type": "string"
+        },
+        "rental_id": {
+          "type": "string"
+        },
+        "safety_lead_id": {
+          "type": "string"
+        },
+        "media_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "device_log_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "INCIDENT_REVIEW_CLOSED": {
+      "type": "object",
+      "required": [
+        "incident_id",
+        "outcome",
+        "safety_lead_id"
+      ],
+      "properties": {
+        "incident_id": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "no_fault",
+            "fault_confirmed",
+            "handed_to_authority"
+          ]
+        },
+        "safety_lead_id": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ASSISTANCE_FIT_CHECKED": {
+      "type": "object",
+      "required": [
+        "assistance_device_id",
+        "member_id",
+        "kind",
+        "result",
+        "checker_staff_id",
+        "responsible_staff_id"
+      ],
+      "properties": {
+        "assistance_device_id": {
+          "type": "string"
+        },
+        "member_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "power_assist",
+            "mobility_aid",
+            "navigation_aid"
+          ]
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed",
+            "conditional"
+          ]
+        },
+        "checker_staff_id": {
+          "type": "string"
+        },
+        "responsible_staff_id": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ASSISTANCE_DEVICE_ATTACHED": {
+      "type": "object",
+      "required": [
+        "assistance_device_id",
+        "member_id",
+        "rental_id",
+        "fit_check_event_id"
+      ],
+      "properties": {
+        "assistance_device_id": {
+          "type": "string"
+        },
+        "member_id": {
+          "type": "string"
+        },
+        "rental_id": {
+          "type": "string"
+        },
+        "fit_check_event_id": {
+          "type": "string"
+        },
+        "attached_by_staff_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ASSISTANCE_ESCALATED": {
+      "type": "object",
+      "required": [
+        "assistance_device_id",
+        "member_id",
+        "reason",
+        "escalated_to_staff_id"
+      ],
+      "properties": {
+        "assistance_device_id": {
+          "type": "string"
+        },
+        "member_id": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "escalated_to_staff_id": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "$comment": "信封校验由本 schema 承担；按事件区分的 payload 结构见 $defs 中与 event_type 同名的定义，由 src.validator 强制执行。",
+  "x-payload-definitions": [
+    "RENTAL_OPENED",
+    "DEVICE_HANDED_OUT",
+    "RENTAL_CLOSED",
+    "PARTY_MEMBER_JOINED",
+    "PARTY_MEMBER_LEFT",
+    "GUARDIANSHIP_DECLARED",
+    "CONSENT_RECORDED",
+    "CONSENT_UPDATED",
+    "ROUTE_CONSTRAINT_PUBLISHED",
+    "ROUTE_REVISED",
+    "ROUTE_CACHE_INVALIDATED",
+    "DEVICE_ALERT_RAISED",
+    "MANUAL_REROUTE_LOGGED",
+    "DEVICE_STATUS_REPORTED",
+    "OFFLINE_EVENTS_RESYNCED",
+    "MEDIA_CAPTURED",
+    "MEDIA_CLASSIFIED",
+    "MEDIA_EXPORTED",
+    "MEDIA_DELETION_REQUESTED",
+    "MEDIA_DELETED",
+    "EVIDENCE_HELD",
+    "EVIDENCE_RELEASED",
+    "RETURN_INSPECTED",
+    "DEVICE_CLEARED",
+    "DEVICE_CLEAR_FAILED",
+    "DEVICE_QUARANTINED",
+    "DEVICE_RELEASED_FOR_RENTAL",
+    "INCIDENT_REVIEW_OPENED",
+    "INCIDENT_REVIEW_CLOSED",
+    "ASSISTANCE_FIT_CHECKED",
+    "ASSISTANCE_DEVICE_ATTACHED",
+    "ASSISTANCE_ESCALATED"
+  ],
+  "x-envelope-optional": [
+    "payload",
+    "source",
+    "received_at",
+    "buffered",
+    "device_sequence",
+    "correlation_id",
+    "causation_id",
+    "site_id"
+  ]
 }

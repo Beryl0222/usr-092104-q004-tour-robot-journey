@@ -1,0 +1,352 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "RENTAL_OPENED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-201",
+    "occurred_at": "2026-10-04T08:30:00+08:00",
+    "version": 1,
+    "summary": "开出租借单",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-003",
+      "party_id": "pty-201",
+      "renter_member_id": "m-201",
+      "site_id": "site-lakeside",
+      "planned_return_at": "2026-10-04T17:00:00+08:00",
+      "accessibility_needs": [
+        "wheelchair"
+      ]
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-201",
+    "occurred_at": "2026-10-04T08:31:00+08:00",
+    "version": 1,
+    "summary": "成员 m-201 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-201",
+      "member_category": "adult",
+      "display_alias": "游客01"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-201",
+    "occurred_at": "2026-10-04T08:33:00+08:00",
+    "version": 2,
+    "summary": "m-201 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-201",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-201",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-201",
+    "occurred_at": "2026-10-04T08:33:01+08:00",
+    "version": 3,
+    "summary": "m-201 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-201",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-201",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "DEVICE_HANDED_OUT",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T08:35:00+08:00",
+    "version": 1,
+    "summary": "伴游设备发放",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-201",
+      "party_id": "pty-201",
+      "handover_staff_id": "s-01",
+      "site_id": "site-lakeside"
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "ROUTE_CONSTRAINT_PUBLISHED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T10:55:00+08:00",
+    "version": 1,
+    "summary": "A-12 栈道施工（硬约束）",
+    "source": "authority",
+    "payload": {
+      "constraint_id": "con-301",
+      "kind": "construction",
+      "severity": "hard",
+      "area_ref": "A-12",
+      "effective_from": "2026-10-04T11:00:00+08:00",
+      "issued_by": "park-ops",
+      "description": "栈道封闭施工"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "ROUTE_CACHE_INVALIDATED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T10:55:10+08:00",
+    "version": 2,
+    "summary": "施工约束发布，使在途设备旧路线缓存失效",
+    "source": "platform",
+    "payload": {
+      "scope": "all_devices",
+      "reason": "construction con-301",
+      "constraint_id": "con-301"
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "ROUTE_REVISED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T10:56:00+08:00",
+    "version": 3,
+    "summary": "改走环湖东路（压过游客的临湖偏好）",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-003",
+      "route_version": 1,
+      "area_ref": "A-12",
+      "considered_constraint_ids": [
+        "con-301"
+      ],
+      "preference_applied": "false",
+      "change_reason": "硬约束：施工封闭"
+    }
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "ROUTE_CONSTRAINT_PUBLISHED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T12:50:00+08:00",
+    "version": 4,
+    "summary": "A-15 无障碍通道临时管制（硬约束）",
+    "source": "authority",
+    "payload": {
+      "constraint_id": "con-302",
+      "kind": "accessibility_restriction",
+      "severity": "hard",
+      "area_ref": "A-15",
+      "effective_from": "2026-10-04T13:00:00+08:00",
+      "issued_by": "park-ops",
+      "description": "无障碍电梯检修，暂停使用"
+    }
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "ROUTE_CACHE_INVALIDATED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T12:50:10+08:00",
+    "version": 5,
+    "summary": "管制生效前刷新全部设备缓存",
+    "source": "platform",
+    "payload": {
+      "scope": "all_devices",
+      "reason": "accessibility restriction con-302",
+      "constraint_id": "con-302"
+    }
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "ROUTE_REVISED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T12:51:00+08:00",
+    "version": 6,
+    "summary": "为轮椅游客切换缓坡替代线",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-003",
+      "route_version": 2,
+      "area_ref": "A-15",
+      "considered_constraint_ids": [
+        "con-301",
+        "con-302"
+      ],
+      "preference_applied": "false",
+      "change_reason": "硬约束：无障碍通道管制"
+    }
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "DEVICE_ALERT_RAISED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T13:20:00+08:00",
+    "version": 2,
+    "summary": "偏离路线告警（断网缓冲）",
+    "source": "device",
+    "payload": {
+      "alert_code": "route_deviation",
+      "severity": "warning",
+      "area_ref": "A-15",
+      "detail": "游客走向管制通道"
+    },
+    "received_at": "2026-10-04T15:10:00+08:00",
+    "buffered": true,
+    "device_sequence": 12
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "MANUAL_REROUTE_LOGGED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T13:25:00+08:00",
+    "version": 3,
+    "summary": "现场人工引导改道缓坡线（断网缓冲）",
+    "source": "staff",
+    "payload": {
+      "staff_id": "s-09",
+      "from_route_version": 2,
+      "to_route_version": 3,
+      "constraint_id": "con-302",
+      "reason": "现场拦截后人工改道",
+      "area_ref": "A-15"
+    },
+    "received_at": "2026-10-04T15:10:00+08:00",
+    "buffered": true,
+    "device_sequence": 13
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "DEVICE_STATUS_REPORTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T13:30:00+08:00",
+    "version": 4,
+    "summary": "设备状态（断网缓冲）",
+    "source": "device",
+    "payload": {
+      "status_code": "back_on_route",
+      "battery_pct": 71
+    },
+    "received_at": "2026-10-04T15:10:00+08:00",
+    "buffered": true,
+    "device_sequence": 14
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "OFFLINE_EVENTS_RESYNCED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T15:10:20+08:00",
+    "version": 5,
+    "summary": "网络恢复，序列 12-14 按真实时间补齐",
+    "source": "device",
+    "payload": {
+      "device_sequence_from": 12,
+      "device_sequence_to": 14,
+      "event_count": 3,
+      "resynced_by_staff_id": "s-09"
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "ROUTE_REVISED",
+    "aggregate_type": "route_advisory",
+    "aggregate_id": "adv-site-lakeside",
+    "occurred_at": "2026-10-04T15:12:00+08:00",
+    "version": 7,
+    "summary": "平台确认人工改道并补发路线版本",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-003",
+      "route_version": 3,
+      "area_ref": "A-15",
+      "considered_constraint_ids": [
+        "con-301",
+        "con-302"
+      ],
+      "preference_applied": "false",
+      "change_reason": "与现场人工改道对齐"
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "RENTAL_CLOSED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-201",
+    "occurred_at": "2026-10-04T17:00:00+08:00",
+    "version": 2,
+    "summary": "租约关闭",
+    "source": "platform",
+    "payload": {
+      "rental_id": "ren-201",
+      "result": "completed",
+      "closed_by_staff_id": "s-01"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "RETURN_INSPECTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T17:05:00+08:00",
+    "version": 6,
+    "summary": "归还外观与功能检验",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-201",
+      "inspecting_staff_id": "s-01",
+      "result": "passed",
+      "findings": "外观完好，电量正常"
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "DEVICE_CLEARED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T17:10:00+08:00",
+    "version": 7,
+    "summary": "旅程数据安全清除并验证",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-201",
+      "wipe_method": "secure_erase",
+      "verified_by": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "DEVICE_RELEASED_FOR_RENTAL",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-003",
+    "occurred_at": "2026-10-04T17:15:00+08:00",
+    "version": 8,
+    "summary": "检验与清除均成功，放行再出租",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-201",
+      "released_by_staff_id": "s-02"
+    }
+  }
+]

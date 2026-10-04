@@ -1,0 +1,349 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "RENTAL_OPENED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-301",
+    "occurred_at": "2026-10-04T08:30:00+08:00",
+    "version": 1,
+    "summary": "开出租借单",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-004",
+      "party_id": "pty-301",
+      "renter_member_id": "m-301",
+      "site_id": "site-lakeside",
+      "planned_return_at": "2026-10-04T17:00:00+08:00",
+      "accessibility_needs": [
+        "mobility_support"
+      ]
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:31:00+08:00",
+    "version": 1,
+    "summary": "成员 m-301 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-301",
+      "member_category": "adult",
+      "display_alias": "游客01"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:31:01+08:00",
+    "version": 2,
+    "summary": "成员 m-303 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-303",
+      "member_category": "child",
+      "display_alias": "游客03"
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "GUARDIANSHIP_DECLARED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:32:00+08:00",
+    "version": 3,
+    "summary": "声明 m-301 对 m-303 的监护关系",
+    "source": "platform",
+    "payload": {
+      "guardian_member_id": "m-301",
+      "ward_member_id": "m-303",
+      "relation": "监护人",
+      "verified_by_staff_id": "s-01",
+      "verification_ref": "idv-m-303"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:33:00+08:00",
+    "version": 4,
+    "summary": "m-301 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-301",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-301",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:33:01+08:00",
+    "version": 5,
+    "summary": "m-301 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-301",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-301",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:33:02+08:00",
+    "version": 6,
+    "summary": "m-303 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-303",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "guardian",
+      "actor_member_id": "m-301",
+      "note": "出发前在服务台登记",
+      "guardian_member_id": "m-301"
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T08:33:03+08:00",
+    "version": 7,
+    "summary": "m-303 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-303",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "guardian",
+      "actor_member_id": "m-301",
+      "note": "出发前在服务台登记",
+      "guardian_member_id": "m-301"
+    }
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "DEVICE_HANDED_OUT",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-004",
+    "occurred_at": "2026-10-04T08:35:00+08:00",
+    "version": 1,
+    "summary": "伴游设备发放",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-301",
+      "party_id": "pty-301",
+      "handover_staff_id": "s-01",
+      "site_id": "site-lakeside",
+      "assistance_device_ids": [
+        "ast-007"
+      ]
+    }
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "ASSISTANCE_FIT_CHECKED",
+    "aggregate_type": "assistance_device",
+    "aggregate_id": "ast-007",
+    "occurred_at": "2026-10-04T08:32:30+08:00",
+    "version": 1,
+    "summary": "动力助力装置适配检查（加装前留痕）",
+    "source": "staff",
+    "payload": {
+      "assistance_device_id": "ast-007",
+      "member_id": "m-301",
+      "kind": "power_assist",
+      "result": "passed",
+      "checker_staff_id": "s-03",
+      "responsible_staff_id": "s-07",
+      "note": "握力与制动距离合格，已告知使用边界"
+    }
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "ASSISTANCE_DEVICE_ATTACHED",
+    "aggregate_type": "assistance_device",
+    "aggregate_id": "ast-007",
+    "occurred_at": "2026-10-04T08:36:00+08:00",
+    "version": 2,
+    "summary": "助力装置加装到伴游设备",
+    "source": "staff",
+    "payload": {
+      "assistance_device_id": "ast-007",
+      "member_id": "m-301",
+      "rental_id": "ren-301",
+      "fit_check_event_id": "evt-010",
+      "attached_by_staff_id": "s-03"
+    }
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "CONSENT_UPDATED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T11:00:00+08:00",
+    "version": 8,
+    "summary": "老年游客途中关闭定位意愿（告警等安全功能改以最小定位处理）",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-301",
+      "scope": "positioning",
+      "decision": "denied",
+      "basis": "self",
+      "actor_member_id": "m-301",
+      "previous_decision": "granted",
+      "reason": "游客自助端变更，即时生效"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "CONSENT_UPDATED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-301",
+    "occurred_at": "2026-10-04T11:05:00+08:00",
+    "version": 9,
+    "summary": "监护人途中撤回儿童摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-303",
+      "scope": "recording",
+      "decision": "denied",
+      "basis": "guardian",
+      "actor_member_id": "m-301",
+      "guardian_member_id": "m-301",
+      "previous_decision": "granted",
+      "reason": "儿童不愿继续出镜"
+    }
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "MEDIA_CAPTURED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-401",
+    "occurred_at": "2026-10-04T11:20:00+08:00",
+    "version": 1,
+    "summary": "后续视频自动识别到拒绝出镜儿童",
+    "source": "device",
+    "payload": {
+      "media_id": "med-401",
+      "rental_id": "ren-301",
+      "party_id": "pty-301",
+      "area_ref": "A-21",
+      "media_kind": "video"
+    }
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "MEDIA_CLASSIFIED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-401",
+    "occurred_at": "2026-10-04T11:20:08+08:00",
+    "version": 2,
+    "summary": "明确拒绝者：拍摄环节排除",
+    "source": "platform",
+    "payload": {
+      "media_id": "med-401",
+      "subject_class": "consent_denied_person",
+      "treatment": "exclude_capture",
+      "classified_by": "device-auto",
+      "note": "实时遮挡 m-303 人脸，不留存可识别片段"
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "ASSISTANCE_ESCALATED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-004",
+    "occurred_at": "2026-10-04T13:30:00+08:00",
+    "version": 2,
+    "summary": "助力装置异常，升级给责任人",
+    "source": "device",
+    "payload": {
+      "assistance_device_id": "ast-007",
+      "member_id": "m-301",
+      "reason": "助力间歇失效",
+      "escalated_to_staff_id": "s-07",
+      "severity": "warning",
+      "detail": "现场更换备用装置"
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "RENTAL_CLOSED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-301",
+    "occurred_at": "2026-10-04T17:00:00+08:00",
+    "version": 2,
+    "summary": "租约关闭",
+    "source": "platform",
+    "payload": {
+      "rental_id": "ren-301",
+      "result": "completed",
+      "closed_by_staff_id": "s-01"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "RETURN_INSPECTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-004",
+    "occurred_at": "2026-10-04T17:05:00+08:00",
+    "version": 3,
+    "summary": "归还外观与功能检验",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-301",
+      "inspecting_staff_id": "s-01",
+      "result": "passed",
+      "findings": "外观完好，电量正常"
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "DEVICE_CLEARED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-004",
+    "occurred_at": "2026-10-04T17:10:00+08:00",
+    "version": 4,
+    "summary": "旅程数据安全清除并验证",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-301",
+      "wipe_method": "secure_erase",
+      "verified_by": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "DEVICE_RELEASED_FOR_RENTAL",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-004",
+    "occurred_at": "2026-10-04T17:15:00+08:00",
+    "version": 5,
+    "summary": "检验与清除均成功，放行再出租",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-301",
+      "released_by_staff_id": "s-02"
+    }
+  }
+]

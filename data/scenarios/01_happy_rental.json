@@ -1,0 +1,400 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "RENTAL_OPENED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-001",
+    "occurred_at": "2026-10-04T08:30:00+08:00",
+    "version": 1,
+    "summary": "开出租借单",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-001",
+      "party_id": "pty-001",
+      "renter_member_id": "m-01",
+      "site_id": "site-lakeside",
+      "planned_return_at": "2026-10-04T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:31:00+08:00",
+    "version": 1,
+    "summary": "成员 m-01 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-01",
+      "member_category": "adult",
+      "display_alias": "游客01"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:31:01+08:00",
+    "version": 2,
+    "summary": "成员 m-02 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-02",
+      "member_category": "adult",
+      "display_alias": "游客02"
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:31:02+08:00",
+    "version": 3,
+    "summary": "成员 m-03 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-03",
+      "member_category": "child",
+      "display_alias": "游客03"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "GUARDIANSHIP_DECLARED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:32:00+08:00",
+    "version": 4,
+    "summary": "声明 m-01 对 m-03 的监护关系",
+    "source": "platform",
+    "payload": {
+      "guardian_member_id": "m-01",
+      "ward_member_id": "m-03",
+      "relation": "监护人",
+      "verified_by_staff_id": "s-01",
+      "verification_ref": "idv-m-03"
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:00+08:00",
+    "version": 5,
+    "summary": "m-01 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-01",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-01",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:01+08:00",
+    "version": 6,
+    "summary": "m-01 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-01",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-01",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:02+08:00",
+    "version": 7,
+    "summary": "m-02 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-02",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-02",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:03+08:00",
+    "version": 8,
+    "summary": "m-02 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-02",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-02",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:04+08:00",
+    "version": 9,
+    "summary": "m-03 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-03",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "guardian",
+      "actor_member_id": "m-01",
+      "note": "出发前在服务台登记",
+      "guardian_member_id": "m-01"
+    }
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-001",
+    "occurred_at": "2026-10-04T08:33:05+08:00",
+    "version": 10,
+    "summary": "m-03 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-03",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "guardian",
+      "actor_member_id": "m-01",
+      "note": "出发前在服务台登记",
+      "guardian_member_id": "m-01"
+    }
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "DEVICE_HANDED_OUT",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-001",
+    "occurred_at": "2026-10-04T08:35:00+08:00",
+    "version": 1,
+    "summary": "伴游设备发放",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-001",
+      "party_id": "pty-001",
+      "handover_staff_id": "s-01",
+      "site_id": "site-lakeside"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "MEDIA_CAPTURED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-01",
+    "occurred_at": "2026-10-04T10:15:00+08:00",
+    "version": 1,
+    "summary": "湖边合影",
+    "source": "device",
+    "payload": {
+      "media_id": "med-01",
+      "rental_id": "ren-001",
+      "party_id": "pty-001",
+      "area_ref": "A-03",
+      "media_kind": "photo"
+    }
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "MEDIA_CLASSIFIED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-01",
+    "occurred_at": "2026-10-04T10:15:05+08:00",
+    "version": 2,
+    "summary": "普通游记素材",
+    "source": "platform",
+    "payload": {
+      "media_id": "med-01",
+      "subject_class": "ordinary",
+      "treatment": "retain",
+      "classified_by": "device-auto"
+    }
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "MEDIA_EXPORTED",
+    "aggregate_type": "media_retention",
+    "aggregate_id": "med-01",
+    "occurred_at": "2026-10-04T16:40:00+08:00",
+    "version": 3,
+    "summary": "游客导出本人游记",
+    "source": "platform",
+    "payload": {
+      "media_id": "med-01",
+      "requested_by_member_id": "m-01",
+      "purpose": "personal_travelogue",
+      "export_ref": "exp-01"
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "RENTAL_CLOSED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-001",
+    "occurred_at": "2026-10-04T17:00:00+08:00",
+    "version": 2,
+    "summary": "租约关闭",
+    "source": "platform",
+    "payload": {
+      "rental_id": "ren-001",
+      "result": "completed",
+      "closed_by_staff_id": "s-01"
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "RETURN_INSPECTED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-001",
+    "occurred_at": "2026-10-04T17:05:00+08:00",
+    "version": 2,
+    "summary": "归还外观与功能检验",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-001",
+      "inspecting_staff_id": "s-01",
+      "result": "passed",
+      "findings": "外观完好，电量正常"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "DEVICE_CLEARED",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-001",
+    "occurred_at": "2026-10-04T17:10:00+08:00",
+    "version": 3,
+    "summary": "旅程数据安全清除并验证",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-001",
+      "wipe_method": "secure_erase",
+      "verified_by": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "DEVICE_RELEASED_FOR_RENTAL",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-001",
+    "occurred_at": "2026-10-04T17:15:00+08:00",
+    "version": 4,
+    "summary": "检验与清除均成功，放行再出租",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-001",
+      "released_by_staff_id": "s-02"
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "RENTAL_OPENED",
+    "aggregate_type": "rental_order",
+    "aggregate_id": "ren-002",
+    "occurred_at": "2026-10-05T08:30:00+08:00",
+    "version": 1,
+    "summary": "开出租借单",
+    "source": "platform",
+    "payload": {
+      "device_id": "dev-001",
+      "party_id": "pty-002",
+      "renter_member_id": "m-10",
+      "site_id": "site-lakeside",
+      "planned_return_at": "2026-10-05T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-021",
+    "event_type": "PARTY_MEMBER_JOINED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-002",
+    "occurred_at": "2026-10-05T08:31:00+08:00",
+    "version": 1,
+    "summary": "成员 m-10 加入同行",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-10",
+      "member_category": "adult",
+      "display_alias": "游客10"
+    }
+  },
+  {
+    "event_id": "evt-022",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-002",
+    "occurred_at": "2026-10-05T08:33:00+08:00",
+    "version": 2,
+    "summary": "m-10 的摄录意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-10",
+      "scope": "recording",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-10",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-023",
+    "event_type": "CONSENT_RECORDED",
+    "aggregate_type": "journey_party",
+    "aggregate_id": "pty-002",
+    "occurred_at": "2026-10-05T08:33:01+08:00",
+    "version": 3,
+    "summary": "m-10 的定位意愿",
+    "source": "platform",
+    "payload": {
+      "member_id": "m-10",
+      "scope": "positioning",
+      "decision": "granted",
+      "basis": "self",
+      "actor_member_id": "m-10",
+      "note": "出发前在服务台登记"
+    }
+  },
+  {
+    "event_id": "evt-024",
+    "event_type": "DEVICE_HANDED_OUT",
+    "aggregate_type": "tour_device",
+    "aggregate_id": "dev-001",
+    "occurred_at": "2026-10-05T08:35:00+08:00",
+    "version": 5,
+    "summary": "伴游设备发放",
+    "source": "staff",
+    "payload": {
+      "rental_id": "ren-002",
+      "party_id": "pty-002",
+      "handover_staff_id": "s-01",
+      "site_id": "site-lakeside"
+    }
+  }
+]
